@@ -1,5 +1,6 @@
 #include <graphics.h>
 #include "consonants.hpp"
+#include <math.h>
 
 void openWindow()
 {
@@ -51,6 +52,22 @@ void updateGridDisplay(int grid[grid_size][grid_size], bool updated[grid_size][g
             }
         }
     }
+}
+
+void viewScore(int score)
+{
+    setactivepage(1);
+    settextstyle(DEFAULT_FONT,HORIZ_DIR,2);
+    char str[15+5];
+    sprintf(str, "your score is %d", score);
+    outtextxy(max_x/2-TEXT_SIZE,max_y/2,str);
+    setvisualpage(1);
+}
+
+void viewGame()
+{
+    setactivepage(0);
+    setvisualpage(0);
 }
 
 void exitWindow()
