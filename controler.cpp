@@ -3,18 +3,35 @@
 #include <array>
 #include "consonants.hpp"
 
-void addApple(int grid[grid_size][grid_size], bool updated[grid_size][grid_size])
+bool addApple(int grid[grid_size][grid_size], bool updated[grid_size][grid_size])
 {
-    int aX, aY;
-    do {
-        aX = 1 + (rand() % (grid_size-2));
-        aY = 1 + (rand() % (grid_size-2));
-    } while (grid[aX][aY] != empty_tile);
+    int aX, aY, sX, sY;
+    sX = 1 + (rand() % (grid_size-2));
+    sY = 1 + (rand() % (grid_size-2));
+    aX = sX;
+    aY = sY;
+    while (grid[aX][aY] != empty_tile) {
+        aX++;
+        if (aX >= grid_size) {
+            aY++;
+            aX = 0;
+            if (aY >= grid_size) {
+                aY = 0;
+            }
+        }
+
+
+        if (aX == sX && aY == sY) {
+            return false;
+        }
+    }
     grid[aX][aY] = apple;
     updated[aX][aY] = apple;
+    return true;
 }
 
-bool updatePlayer(int grid[grid_size][grid_size], bool updated[grid_size][grid_size], int newPosX, int newPosY, int *body_len) {
+bool updatePlayer(int grid[grid_size][grid_size], bool updated[grid_size][grid_size], int newPosX, int newPosY, int *body_len)
+{
     if (newPosX < 0 || newPosY < 0) {
         return true;
     } else if (newPosX >= grid_size || newPosY >= grid_size) {
@@ -44,7 +61,8 @@ bool updatePlayer(int grid[grid_size][grid_size], bool updated[grid_size][grid_s
     return false;
 }
 
-bool movePlayer(direction input ,int grid[grid_size][grid_size], bool updated[grid_size][grid_size], int *posX, int *posY, int *body_len) {
+bool movePlayer(direction input ,int grid[grid_size][grid_size], bool updated[grid_size][grid_size], int *posX, int *posY, int *body_len)
+{
     switch(input) {
     case (up):
         (*posY)--;
@@ -62,13 +80,4 @@ bool movePlayer(direction input ,int grid[grid_size][grid_size], bool updated[gr
 
     return updatePlayer(grid, updated, *posX, *posY, body_len);
 }
-/*
-int main() {
-    int grid[grid_size][grid_size] = {{0}};
-    bool updated[grid_size][grid_size] = {{false}};
 
-    char input_char = 'w';
-    int posX = (grid_size / 2), posY = posX;
-    int body_len = 1;
-    bool ended = movePlayer(input_char, grid, updated, &posX, &posY, &body_len);
-}*/
