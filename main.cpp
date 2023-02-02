@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <time.h>
 #include <math.h>
-#
+
 #include "controler.hpp"
 #include "display.hpp"
 
@@ -76,7 +76,8 @@ DWORD WINAPI inputThread(void *input)
     }
 }
 
-float get_clock_factor(int body_len) {
+float get_clock_factor(int body_len)
+{
     return nanosecs_to_sleep_base + 1 / (log2(body_len)+1);
 }
 

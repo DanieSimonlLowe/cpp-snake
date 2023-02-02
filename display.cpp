@@ -6,15 +6,23 @@ void openWindow()
     initwindow(max_x,max_y);
     #ifdef has_grid_lines
     setcolor(15);
+
     for (int i = 1; i < grid_size; i ++) {
-        line(i*(*grid_x),0 ,i*(*gridx), max_y);
-        line(0,i*(*grid_y) ,maxx, i*(*grid_y));
+        #if tile_border_size < 2
+        line(i*(grid_sqear_size),0 ,i*(grid_sqear_size), max_y);
+        line(0,i*(grid_sqear_size) ,max_x, i*(grid_sqear_size));
+        #else
+        bar(i*(grid_sqear_size),0 ,i*(grid_sqear_size)+tile_border_size, max_y);
+        bar(0,i*(grid_sqear_size) ,max_x, i*(grid_sqear_size)+tile_border_size);
+        #endif // tile_border_size
     }
+
     #endif
     return ;
 }
 
-void updateTileDisplay(int state , int i, int j) {
+void updateTileDisplay(int state , int i, int j)
+{
     switch(state) {
     case empty_tile:
         setfillstyle(1,BACKGROUND_COLOR); /* set black*/
@@ -26,7 +34,9 @@ void updateTileDisplay(int state , int i, int j) {
         setfillstyle(1,SNAKE_COLOR); /*set green*/
         break;
     }
+
     bar(grid_sqear_size*i+tile_border_size,grid_sqear_size*j+tile_border_size,grid_sqear_size*(i+1),grid_sqear_size*(j+1));
+
 
 }
 
@@ -43,7 +53,8 @@ void updateGridDisplay(int grid[grid_size][grid_size], bool updated[grid_size][g
     }
 }
 
-void exitWindow() {
+void exitWindow()
+{
     closegraph();
 
 }
