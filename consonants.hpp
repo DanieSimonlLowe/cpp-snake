@@ -1,6 +1,6 @@
 #ifndef CONSONANTS_HPP_INCLUDED
 #define CONSONANTS_HPP_INCLUDED
-#define grid_size 10
+#define grid_size 30
 #define max_window 685
 #define cell_display_size grid_size
 #define grid_sqear_size (max_window/grid_size)
