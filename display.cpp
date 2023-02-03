@@ -58,6 +58,7 @@ void viewScore(int score)
 {
     setactivepage(1);
     settextstyle(DEFAULT_FONT,HORIZ_DIR,2);
+    cleardevice();
     char str[15+5];
     sprintf(str, "your score is %d", score);
     outtextxy(max_x/2-TEXT_SIZE,max_y/2,str);
