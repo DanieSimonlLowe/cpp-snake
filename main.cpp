@@ -68,8 +68,8 @@ int main()
             exitWindow();
             return 0;
         }
-        resetGrid(grid,updated);
-        viewGame();
+        resetGrid(grid, updated);
+        viewGame(grid, updated);
     }
 
 

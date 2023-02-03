@@ -7,6 +7,6 @@ void updateGridDisplay(int grid[grid_size][grid_size], bool updated[grid_size][g
 void exitWindow();
 
 void viewScore(int score);
-void viewGame();
+void viewGame(int grid[grid_size][grid_size], bool updated[grid_size][grid_size]);
 #include "display.cpp"
 #endif // DISPLAY_HPP_INCLUDED

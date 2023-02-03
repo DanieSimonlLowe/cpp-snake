@@ -64,10 +64,12 @@ void viewScore(int score)
     setvisualpage(1);
 }
 
-void viewGame()
+void viewGame(int grid[grid_size][grid_size], bool updated[grid_size][grid_size])
 {
     setactivepage(0);
+    updateGridDisplay(grid, updated);
     setvisualpage(0);
+
 }
 
 void exitWindow()
